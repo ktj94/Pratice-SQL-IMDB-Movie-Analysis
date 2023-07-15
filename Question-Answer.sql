@@ -201,14 +201,20 @@ Combining both the movie and genres table can give more interesting insights. */
 -- Q6.Which genre had the highest number of movies produced overall?
 -- Type your code below:
 
+SELECT Count(movie_id), genre
+FROM genre
+GROUP BY genre
+ORDER BY genre DESC LIMIT 1;
+
+/* Highest number of movies produced in the last year(2019)? */
+
 SELECT     genre,
            Count(mov.id) AS number_of_movies
 FROM       movie       AS mov
 INNER JOIN genre       AS gen
-where      gen.movie_id = mov.id
+where      gen.movie_id = mov.id AND mov.year=2019
 GROUP BY   genre
 ORDER BY   number_of_movies DESC limit 1 ;
-
 
 -- Drama genre had the highest movies produced overall i.e, 4285.
 
